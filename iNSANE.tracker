@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<trackerinfo
+type="ins"
+shortName="ins"
+longName="iNSANE"
+siteName="newinsane.info">
+
+<settings>
+<description text="Check in your passkey: Settings (newinsane.info/settings.php) or RSS (newinsane.info/rss_list.php) menu."/>
+<passkey/>
+</settings>
+
+<servers>
+<server
+network="IRC2"
+serverNames="irc2.hu"
+channelNames="#insane"
+announcerNames="Insane"
+/>
+</servers>
+
+<parseinfo>
+<linepatterns>
+<extract>
+<!--[Új] Mesebeli.vadnyugat.1995.Custom.Hun.PAL.DVDRip.XVID-Buksza -== Film/Hun/SD ==- 1,13 GiB - 4 file => https://newinsane.info/details.php?id=488351 -->
+<regex value="\[Új\] (.*) -== (.*) ==- (.*) - .* file => (https://newinsane.info/).*.php.*id=(.*)"/>
+<vars>
+<var name="torrentName"/>
+<var name="category"/>
+<var name="torrentSize"/>
+<var name="$baseUrl"/>
+<var name="$torrentId"/>
+</vars>
+</extract>
+</linepatterns>
+<!-- https://newinsane.info/download.php/488351/passkey/[iNs-488351][Film-Hun-SD]Mesebeli.vadnyugat.1995.Custom.Hun.PAL.DVDRip.XVID-Buksza.torrent -->
+<linematched>
+<var name="torrentUrl">
+<var name="$baseUrl"/>
+<string value="download.php/"/>
+<var name="$torrentId"/>
+<string value="/"/>
+<var name="passkey"/>
+<string value="/[iNs-"/>
+<var name="$torrentId"/>
+<string value="]["/>
+<var name="category"/>
+<string value="]"/>
+<var name="torrentName"/>
+<string value=".torrent"/>
+</var>
+</linematched>
+<ignore>
+</ignore>
+</parseinfo>
+</trackerinfo>
